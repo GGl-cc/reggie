@@ -84,4 +84,24 @@ public class OrderController {
 
         return R.success(pageInfo);
     }
+    // 新增处理 PUT 请求的接口
+    @PutMapping()
+    public R<String> updateOrder(@RequestBody Orders order) {
+        // 检查订单是否存在
+        Orders existingOrder = orderService.getById(order.getId());
+        if (existingOrder == null) {
+            return R.error("订单不存在");
+        }
+
+        // 更新订单状态
+        existingOrder.setStatus(order.getStatus());
+
+        // 调用 service 层的方法更新订单
+        boolean success = orderService.updateById(existingOrder);
+        if (success) {
+            return R.success("订单更新成功");
+        } else {
+            return R.error("订单更新失败");
+        }
+    }
 }
