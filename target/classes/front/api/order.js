@@ -31,4 +31,12 @@ function orderAgainApi(data) {
       'method': 'post',
       data
   })
+    // 提交评价
+    function addCommentApi(data) {
+        return $axios({
+            'url': '/order/comment',
+            'method': 'post',
+            data
+        });
+    }
 }

@@ -61,7 +61,9 @@
                     <span class="price">￥{{order[0].amount}}</span>
                 </div>
                 <div class="btn" v-if="order[0].status === 4">
+
                     <div class="btnAgain" @click="addOrderAgain">再来一单</div>
+
                 </div>
             </div>
             <div class="quitLogin" @click="toPageLogin">
@@ -69,6 +71,21 @@
             </div>
         </div>
     </div>
+
+    <!-- 评价模态框 -->
+    <el-dialog :visible.sync="commentVisible" title="评价订单">
+        <template #content>
+            <el-rate v-model="score" :max="5"></el-rate>
+            <el-input v-model="commentContent" type="textarea" placeholder="请输入评价内容"></el-input>
+        </template>
+        <template #footer>
+        <span class="dialog-footer">
+            <el-button @click="commentVisible = false">取消</el-button>
+            <el-button type="primary" @click="submitComment">提交</el-button>
+        </span>
+        </template>
+    </el-dialog>
+
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="../../backend/plugins/vue/vue.js"></script>
     <!-- 引入组件库 -->
@@ -191,5 +208,6 @@
             }
         })
     </script>
+
 </body>
 </html>

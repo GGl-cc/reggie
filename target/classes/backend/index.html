@@ -100,6 +100,18 @@
         </div>
       </div>
     </div>
+
+    <div class="comment-management">
+      <h2>评论管理</h2>
+      <el-table :data="commentList" stripe>
+        <el-table-column prop="orderId" label="订单ID"></el-table-column>
+        <el-table-column prop="userId" label="用户ID"></el-table-column>
+        <el-table-column prop="content" label="评论内容"></el-table-column>
+        <el-table-column prop="score" label="打分"></el-table-column>
+        <el-table-column prop="createTime" label="评论时间"></el-table-column>
+      </el-table>
+    </div>
+
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="plugins/vue/vue.js"></script>
     <!-- 引入组件库 -->
@@ -199,6 +211,34 @@
           }
         }
       })
+    </script>
+    <script>
+      new Vue({
+        data() {
+          return {
+            commentList: []
+          };
+        },
+        created() {
+          this.getCommentList();
+        },
+        methods: {
+          async getCommentList() {
+            const res = await getCommentListApi();
+            if (res.code === 1) {
+              this.commentList = res.data;
+            }
+          }
+        }
+      });
+
+      // 获取评论列表接口
+      function getCommentListApi() {
+        return $axios({
+          'url': '/order/comment/list',
+          'method': 'get'
+        });
+      }
     </script>
   </body>
 </html>
