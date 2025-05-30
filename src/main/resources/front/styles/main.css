@@ -909,3 +909,63 @@
   width: 44rem;
   height: 44rem;
 }
+
+
+.comments-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin-top: 20px;
+}
+
+.comments-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-item {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.comment-rating {
+  display: flex;
+  color: #ffc107; /* 黄色星星 */
+  margin-bottom: 10px;
+}
+
+.comment-rating span {
+  margin-right: 2px;
+}
+
+.comment-rating span.active {
+  color: #ffc107;
+}
+
+.comment-content {
+  line-height: 1.5;
+  color: #333;
+}
+
+.no-comments {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
