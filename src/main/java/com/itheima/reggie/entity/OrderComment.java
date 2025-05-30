@@ -9,7 +9,7 @@ public class OrderComment {
     private Long id;
     private Long orderId; // 订单ID
     private Long userId; // 用户ID
-    private String content; // 评论内容
-    private int score; // 打分
+    private String contentText; // 评论内容
+
     private LocalDateTime createTime; // 评论时间
 }

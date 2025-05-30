@@ -132,3 +132,48 @@ i {
   text-align: left;
   color: #999999;
 }
+
+/* 评论区域样式 */
+.comments-container {
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #fff;
+}
+
+.comments-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.comment-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.comment-content {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.comment-rating {
+  color: #ffc107;
+  font-size: 14px;
+}
+
+.no-comments {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}

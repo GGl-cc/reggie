@@ -1,7 +1,12 @@
 package com.itheima.reggie.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.itheima.reggie.entity.OrderComment;
 
-public interface OrderCommentService extends IService<OrderComment> {
+import java.util.List;
+
+public interface OrderCommentService {
+    void saveComment(OrderComment comment);
+    List<OrderComment> getCommentsByOrderId(Long orderId);
+    List<OrderComment> getAllComments();
+    void deleteComment(Long commentId);
 }

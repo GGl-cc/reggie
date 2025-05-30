@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>评论管理</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="../../plugins/element-ui/index.css" />
+  <link rel="stylesheet" href="../../styles/common.css" />
+  <link rel="stylesheet" href="../../styles/page.css" />
+</head>
+<body>
+<div class="dashboard-container" id="comment-app">
+  <el-table :data="comments">
+    <el-table-column prop="commentText" label="评论内容"></el-table-column>
+    <el-table-column prop="commentTime" label="评论时间"></el-table-column>
+    <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button @click="deleteComment(scope.row.id)">删除</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="../../plugins/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="../../plugins/element-ui/index.js"></script>
+<!-- 引入axios -->
+<script src="../../plugins/axios/axios.min.js"></script>
+<script>
+  new Vue({
+    el: '#comment-app',
+    data() {
+      return {
+        comments: []
+      };
+    },
+    created() {
+      this.getComments();
+    },
+    methods: {
+      getComments() {
+        axios.get('/orderComment/all')
+                .then(response => {
+                  if (response.data.code === 1) {
+                    this.comments = response.data.data;
+                  } else {
+                    this.$message.error(response.data.msg || '操作失败');
+                  }
+                })
+                .catch(error => {
+                  this.$message.error('请求出错了：' + error);
+                });
+      },
+      deleteComment(commentId) {
+        this.$confirm('确认删除该评论?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          axios.delete(`/orderComment/${commentId}`)
+                  .then(response => {
+                    if (response.data.code === 1) {
+                      this.$message.success('评论删除成功');
+                      this.getComments();
+                    } else {
+                      this.$message.error(response.data.msg || '操作失败');
+                    }
+                  })
+                  .catch(error => {
+                    this.$message.error('请求出错了：' + error);
+                  });
+        });
+      }
+    }
+  });
+</script>
+</body>
+</html>
